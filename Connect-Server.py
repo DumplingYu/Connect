@@ -45,10 +45,10 @@ nickname = {}
 
 server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 #server_socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
-server.bind((HOST, PORT))
+server.bind((host, port))
 server.listen(MAX_CONNECTIONS)
 connections.append(server)
-write('[INFO] Chat server started on port %d'%PORT)
+write('[INFO] Chat server started on port %d'%port)
 
 while True:
     try:

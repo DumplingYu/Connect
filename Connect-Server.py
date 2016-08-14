@@ -1,27 +1,43 @@
 # Connect
-# A Python-based chat room
 # Server Edition
-# Pre-Alpha 1.0
+# Pre-Alpha 1.1
 
 import socket, select, sys
 
-sys.stdout.write('[INFO] Welcome to Connect!\n')
-sys.stdout.flush()
-
-def broadcast(exception_sock, message):
+def broadcast(exception_sock, message, newline=True):
+    '''Broadcast a message to every connected nodes except for the server and the one who sent the message'''
+    if newline and message[-1] != '\n': message += '\n'
     if not isinstance(message, bytes): message = bytes(message, 'utf-8')
     for sock in connections:
         if sock != server and sock != exception_sock:
             try: sock.send(message)
             except Exception: #May be socket disconnection or network problem
-                sys.stdout.write('[INFO] Client %s:%s disconnected\n'%addr)
-                sys.stdout.flush()
-                broadcast(sock, '\b\b[SERVER] %s:%s left the room\n'%addr)
+                write('[INFO] Client %s:%s (%s) disconnected'%tuple(list(addr)+[nickname[sock.getpeername()]]))
+                broadcast(sock, '\n\r[SERVER] %s left the room'%nickname[addr])
                 sock.close()
                 connections.remove(sock)
 
-HOST = 'localhost'
-PORT = 5550
+def write(message, newline=True):
+    '''Outputs a message to the server terminal'''
+    message = str(message)
+    if newline and message[-1] != '\n': message += '\n'
+    sys.stdout.write(message)
+    sys.stdout.flush()
+
+write('[CONNECT] Welcome to Connect!')
+
+write('[CONNECT] Please input the host: ', False)
+host = sys.stdin.readline().strip()
+if not host: host = 'localhost'
+while True:
+    write('[CONNECT] Please input the port: ', False)
+    port = sys.stdin.readline().strip()
+    if not port: port = 2189
+    try:
+        port = int(port)
+        break
+    except ValueError:
+        write('[ERROR] Invalid Input!')
 RECV_BUFFER = 2048
 MAX_CONNECTIONS = 20
 connections = []
@@ -32,8 +48,7 @@ server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 server.bind((HOST, PORT))
 server.listen(MAX_CONNECTIONS)
 connections.append(server)
-sys.stdout.write('[INFO] Chat server started on port %d\n'%PORT)
-sys.stdout.flush()
+write('[INFO] Chat server started on port %d'%PORT)
 
 while True:
     try:
@@ -44,28 +59,29 @@ while True:
             if sock == server: #New connection through server socket
                 connection, addr = server.accept()
                 connections.append(connection)
-                sys.stdout.write('[INFO] Client %s:%s connected\n'%addr)
-                sys.stdout.flush()
-                broadcast(connection, '[SERVER] %s:%s entered the room\n'%addr)
              
             else: #Incoming message from a client
                 try:
                     data = sock.recv(RECV_BUFFER).decode('utf-8')
+                    peername = sock.getpeername()
+                    if peername not in nickname.keys():
+                        if data: nickname[peername] = data[:-1]
+                        else: nickname[peername] = 'Anonymous'
+                        write('[INFO] Client %s:%s (%s) connected'%tuple(list(addr)+[nickname[peername]]))
+                        broadcast(connection, '\n\r[SERVER] %s entered the room\n'%nickname[peername])
+                        continue
                     if data:
-                        broadcast(sock, '\r[%s:%d] %s'%tuple(list(sock.getpeername())+[data]))
+                        broadcast(sock, '\n\r[%s] %s'%(nickname[peername], data))
                 except Exception as e:
                     print(e)
-                    sys.stdout.write('[INFO] Client %s:%s disconnected\n'%addr)
-                    sys.stdout.flush()
-                    broadcast(sock, '\b\b[SERVER] %s:%s left the room\n'%addr)
+                    write('[INFO] Client %s:%s (%s) disconnected'%tuple(list(addr)+[nickname[peername]]))
+                    broadcast(sock, '\n\r[SERVER] %s left the room'%nickname[addr])
                     sock.close()
                     connections.remove(sock)
     except KeyboardInterrupt:
-        sys.stdout.write('\b\b[INFO] Server closing...\n')
-        sys.stdout.flush()
-        broadcast(server, '[SERVER] Chat room closed by server\n')
+        write('\b\b[INFO] Server closing...')
+        broadcast(server, '\n[SERVER] Chat room closed by server')
         break
 server.close()
-sys.stdout.write('[INFO] Server closed\n')
-sys.stdout.flush()
+write('[INFO] Server closed')
 sys.exit()

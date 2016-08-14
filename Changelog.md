@@ -1,6 +1,6 @@
 # *Connect* Changelog
 
-## 2016.8.14
+## 2016.8.14 20pm
 #### Server (Pre-Alpha 1.0)
 * Supports nicknames!
 * Added write() function
@@ -14,5 +14,5 @@
 * Removed unused module
 * Optimized code
 
-## 2016.8.14 (Pre-Alpha 1.0)
+## 2016.8.13 22pm (Pre-Alpha 1.0)
 * First release

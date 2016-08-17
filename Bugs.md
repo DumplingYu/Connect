@@ -7,3 +7,5 @@
 3 | LOW | Server | Pre-1.0<br>Pre-1.1<br>Alpha-1.0 | The server will not automatically respond to disconnected clients. | **NO**
 4 | *MEDIUM* | Server | Pre-1.0<br>Pre-1.1<br>Alpha-1.0 | The server port sometimes will not close properly. | **NO**
 5 | *MEDIUM* | Server | Alpha-1.0 | Unable to close server. | **NO**
+6 | LOW | Server | Alpha-1.0 | The 'Send' button and the entry box has no use. | **NO**
+7 | LOW | Client | Alpha-1.0 | The 'Send' button has no use. | **NO**

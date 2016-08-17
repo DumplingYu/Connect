@@ -1,6 +1,6 @@
 # Connect
 # Server Edition
-# Pre-Alpha 1.1
+# Alpha 1.0
 
 import socket
 import sys

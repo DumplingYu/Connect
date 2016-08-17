@@ -14,6 +14,8 @@ Supported OS: **OSX / macOS**
 See *Bugs.md*
 
 ##Goals
-* Encrypts the message
-* Allow multiple rooms and person-to-person chat
-* Allow password protected chat rooms
+- [x] Add a GUI
+- [ ] Encrypts the message
+- [x] Supporting nicknames
+- [ ] Allow multiple rooms and person-to-person chat
+- [ ] Allow password protected chat rooms

@@ -9,3 +9,8 @@
 5 | *MEDIUM* | Server | Alpha-1.0 | Unable to close server. | **NO**
 6 | LOW | Server | Alpha-1.0 | The 'Send' button and the entry box has no use. | **NO**
 7 | LOW | Client | Alpha-1.0 | The 'Send' button has no use. | **NO**
+8 | **HIGH** | Client | Alpha-1.0 | Sending special characters like the emoji, will cause the client to lag. | **NO**
+9 | *MEDIUM* | Client | Alpha-1.0 | If a nickname includes a space, only the first word will be remained. | **NO**
+10 | *LOW* | Client | Alpha-1.0 | Users able to spam. | **NO**
+11 | *MEDIUM* | Client | Alpha-1.0 | Sending a massive chunk of text causes the server to raise a *Bad file descriptor* error. | **NO**
+12 | *MEDIUM* | Server | Server sometimes raises a *Bad file descriptor* error when a client closes the window. | **NO**

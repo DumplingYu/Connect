@@ -1,5 +1,17 @@
 # *Connect* Changelog
 
+## 2016.8.24 17pm
+#### Server (Alpha 2.0)
+* Supported custom skin (only 1 for right now)
+* Added unfinished command
+
+#### Client (Alpha 2.0)
+* Added a push and sound notification
+* Supported custom skin (only 1 for right now)
+* Fixed bugs (See [Bug Page](https://github.com/yu-george/Connect/blob/master/Bugs.md) for more detail)
+  * Bug-9
+  * Bug-10
+
 ## 2016.8.17 20pm
 #### Server (Alpha 1.0)
 * GUI! GUI! GUI!

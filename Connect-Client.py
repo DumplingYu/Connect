@@ -1,5 +1,5 @@
 # Connect
-# Server Edition
+# Client Edition
 # Alpha 2.0
 
 import socket
@@ -52,7 +52,7 @@ def GUI():
 def sendMsg(event):
     entryBox.configure(state='normal')
     message = entryBox.get('0.0','end')
-    if message:
+    if message != '\n':
         output(message, tag='tag-right')
         server.send(bytes(message, 'utf-8'))
     entryBox.delete('1.0','end')

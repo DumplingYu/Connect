@@ -2,12 +2,13 @@
 
 A Python-based chat room software.
 
-Python Version: **3.5.1**
+Python Version: **3.5**
 
 Supported OS: **OSX / macOS**
 
 ##Features
 * GUI
+* Push *and* sound notification
 * User nicknames
 
 ##Known Issues

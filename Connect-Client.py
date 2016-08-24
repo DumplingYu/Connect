@@ -1,6 +1,6 @@
 # Connect
 # Client Edition
-# Alpha 2.0
+# Alpha 2.1
 
 import socket
 import sys
@@ -78,18 +78,8 @@ def notif(message):
     notifCmd = 'osascript notif.scpt "%s"'%message
     os.system(notifCmd)
 
-def cfd():
-    filePath = os.path.dirname(os.path.realpath(__file__))
-##    specials = ['|','\\','/','[',']','{','}','(',')','<','>',';','*','&','%','$','#','!','`','~','\'','"','?',' ']
-##    for i in specials:
-##        if i != '/': filePath = filePath.replace(i,'\\'+i)
-##        else: filePath = filePath.replace('/','\\:')
-    specials = ['|','\\','[',']','{','}','(',')','<','>',';','*','&','%','$','#','!','`','~','\'','"','?',' ']
-    for i in specials: filePath = filePath.replace(i,'\\'+i)
-    os.system('cd %s'%filePath)
-
 GUI()
-#cfd()
+os.chdir(os.path.dirname(os.path.realpath(__file__)))
 output('Welcome to Connect!')
 output('Connecting...')
 

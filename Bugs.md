@@ -14,3 +14,4 @@
 10 | *LOW* | Client | Alpha-1.0 | Users able to spam. | **YES**<br>Alpha-2.0
 11 | *MEDIUM* | Client | Alpha-1.0<br>Alpha-2.0 | Sending a massive chunk of text causes the server to raise a *Bad file descriptor* error. | **NO**
 12 | *MEDIUM* | Server | Alpha-1.0<br>Alpha-2.0 | Server sometimes raises a *Bad file descriptor* error when a client closes the window. | **NO**
+13 | **HIGH** | Client | Alpha-2.0 | Cannot find notif.scpt, thus causing massive amount of errors. | **NO**

@@ -15,7 +15,7 @@ Supported OS: **OSX / macOS**
 * Custom skins
 
 ##Known Issues
-See *Bugs.md*
+See *[Bugs.md](https://github.com/yu-george/Connect/blob/master/Bugs.md)*
 
 ##Goals
 - [x] Add a GUI

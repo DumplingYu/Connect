@@ -1,5 +1,10 @@
 # *Connect* Changelog
 
+## 2016.8.24 19pm
+#### Client (Alpha 2.1)
+* Fixed bugs (See [Bug Page](https://github.com/yu-george/Connect/blob/master/Bugs.md) for more detail)
+  * BUG-13
+
 ## 2016.8.24 17pm
 #### Server (Alpha 2.0)
 * Supported custom skin (only 1 for right now)
@@ -9,8 +14,8 @@
 * Added a push and sound notification
 * Supported custom skin (only 1 for right now)
 * Fixed bugs (See [Bug Page](https://github.com/yu-george/Connect/blob/master/Bugs.md) for more detail)
-  * Bug-9
-  * Bug-10
+  * BUG-9
+  * BUG-10
 
 ## 2016.8.17 20pm
 #### Server (Alpha 1.0)
@@ -23,8 +28,8 @@
 * Changed the way to customize host, port and nickname
 * Optimized code
 * Fixed bugs (See [Bug Page](https://github.com/yu-george/Connect/blob/master/Bugs.md) for more detail)
-  * Bug-1
-  * Bug-2
+  * BUG-1
+  * BUG-2
 
 ## 2016.8.14 20pm
 #### Server (Pre-Alpha 1.1)

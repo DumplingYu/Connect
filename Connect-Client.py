@@ -1,11 +1,13 @@
 # Connect
-# Client Edition
-# Alpha 1.0
+# Server Edition
+# Alpha 2.0
 
 import socket
 import sys
+import os
 import threading
 import tkinter as tk
+from config import *
 
 class listen(threading.Thread):
     def __init__(self):
@@ -24,11 +26,11 @@ def GUI():
     root.geometry('500x650')
     root.resizable(False, False)
     #Background
-    background = tk.Frame(root, bd=0, bg='black')
+    background = tk.Frame(root, bd=0, bg=mainBgColor)
     background.lower(belowThis=None)
     background.place(x=0,y=0,height=650,width=500)
     #Chat Log
-    chatLog = tk.Text(root, bd=0, bg='black', fg='green', cursor='arrow', highlightbackground='black', state='disabled')
+    chatLog = tk.Text(root, bd=0, bg=logBgColor, fg=logFgColor, cursor=logCursor, highlightbackground=logHlColor, state='disabled')
     chatLog.tag_configure('tag-center', justify='center')
     chatLog.tag_configure('tag-left', justify='left')
     chatLog.tag_configure('tag-right', justify='right')
@@ -36,7 +38,7 @@ def GUI():
     scrollbar = tk.Scrollbar(root, command=chatLog.yview)
     chatLog['yscrollcommand'] = scrollbar.set
     #Entry box
-    entryBox = tk.Text(root, bd=1, bg='black', fg='green', highlightbackground='green')
+    entryBox = tk.Text(root, bd=1, bg=boxBgColor, fg=boxFgColor, highlightbackground=boxHlColor)
     entryBox.bind('<Return>', lambda event: entryBox.configure(state='disabled'))
     entryBox.bind('<KeyRelease-Return>', sendMsg)
     #Send Button
@@ -50,24 +52,44 @@ def GUI():
 def sendMsg(event):
     entryBox.configure(state='normal')
     message = entryBox.get('0.0','end')
-    output(message, tag='tag-right')
-    server.send(bytes(message, 'utf-8'))
-    entryBox.delete('1.0','end-1c')
+    if message:
+        output(message, tag='tag-right')
+        server.send(bytes(message, 'utf-8'))
+    entryBox.delete('1.0','end')
     chatLog.yview('end')
 
 def output(message, pos='end', tag='tag-center'):
     '''Outputs a message to the GUI'''
     message = str(message)
+    note = True
     if message[-1] != '\n': message += '\n'
     if message[:8] == '[SERVER]':
         tag = 'tag-center'
         message = message[9:]
+        note = False
     chatLog.configure(state='normal')
     chatLog.insert(pos, message, tag)
     chatLog.configure(state='disabled')
     chatLog.yview('end')
+    if note and ']' in message: notif(message)
+
+def notif(message):
+    if ']' in message: message = ']'.join(message.split(']')[1:])[1:]
+    notifCmd = 'osascript notif.scpt "%s"'%message
+    os.system(notifCmd)
+
+def cfd():
+    filePath = os.path.dirname(os.path.realpath(__file__))
+##    specials = ['|','\\','/','[',']','{','}','(',')','<','>',';','*','&','%','$','#','!','`','~','\'','"','?',' ']
+##    for i in specials:
+##        if i != '/': filePath = filePath.replace(i,'\\'+i)
+##        else: filePath = filePath.replace('/','\\:')
+    specials = ['|','\\','[',']','{','}','(',')','<','>',';','*','&','%','$','#','!','`','~','\'','"','?',' ']
+    for i in specials: filePath = filePath.replace(i,'\\'+i)
+    os.system('cd %s'%filePath)
 
 GUI()
+#cfd()
 output('Welcome to Connect!')
 output('Connecting...')
 
@@ -78,7 +100,7 @@ server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 #server.settimeout(5)
 try: server.connect((HOST, PORT))
 except Exception: sys.exit()
-server.send(bytes(sys.argv[3], 'utf-8'))
+server.send(bytes(' '.join(sys.argv[3:]), 'utf-8'))
 
 output('You are connected to the server!\n')
 

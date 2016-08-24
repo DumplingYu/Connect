@@ -2,7 +2,7 @@
 
 A Python-based chat room software.
 
-Latest Version: **Alpha 2.0**
+Latest Version: Server: **Alpha 2.0**  Client: **Alpha 2.1**
 
 Python Version: **3.5**
 
@@ -10,8 +10,9 @@ Supported OS: **OSX / macOS**
 
 ##Features
 * GUI
-* Push *and* sound notification
+* Push and sound notification
 * User nicknames
+* Custom skins
 
 ##Known Issues
 See *Bugs.md*

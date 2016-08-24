@@ -2,6 +2,8 @@
 
 A Python-based chat room software.
 
+Latest Version: **Alpha 2.0**
+
 Python Version: **3.5**
 
 Supported OS: **OSX / macOS**
@@ -20,3 +22,4 @@ See *Bugs.md*
 - [x] Supporting nicknames
 - [ ] Allow multiple rooms and person-to-person chat
 - [ ] Allow password protected chat rooms
+- [x] Add notification

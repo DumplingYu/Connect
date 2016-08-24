@@ -1,11 +1,12 @@
 # Connect
 # Server Edition
-# Alpha 1.0
+# Alpha 2.0
 
 import socket
 import sys
 import threading
 import tkinter as tk
+from config import *
 
 class listen(threading.Thread):
     def __init__(self):
@@ -29,7 +30,8 @@ class listen(threading.Thread):
                     output('[INFO] Client %s:%s (%s) disconnected'%tuple(list(addr)+[nickname[peername]]))
                     broadcast(connection, '[SERVER] %s left the room'%nickname[addr])
                     connection.close()
-                    connections.remove(connection)
+                    try: connections.remove(connection)
+                    except ValueError: pass
 
 def GUI():
     global root, chatLog, entryBox
@@ -39,11 +41,11 @@ def GUI():
     root.geometry('500x650')
     root.resizable(False, False)
     #Background
-    background = tk.Frame(root, bd=0, bg='black')
+    background = tk.Frame(root, bd=0, bg=mainBgColor)
     background.lower(belowThis=None)
     background.place(x=0,y=0,height=650,width=500)
     #Chat Log
-    chatLog = tk.Text(root, bd=0, bg='black', fg='green', cursor='arrow', highlightbackground='black', state='disabled')
+    chatLog = tk.Text(root, bd=0, bg=logBgColor, fg=logFgColor, cursor=logCursor, highlightbackground=logHlColor, state='disabled')
     chatLog.tag_configure('tag-center', justify='center')
     chatLog.tag_configure('tag-left', justify='left')
     chatLog.tag_configure('tag-right', justify='right')
@@ -51,7 +53,9 @@ def GUI():
     scrollbar = tk.Scrollbar(root, command=chatLog.yview)
     chatLog['yscrollcommand'] = scrollbar.set
     #Entry box
-    entryBox = tk.Text(root, bd=1, bg='black', fg='green', highlightbackground='green')
+    entryBox = tk.Text(root, bd=1, bg=boxBgColor, fg=boxFgColor, highlightbackground=boxHlColor)
+    entryBox.bind('<Return>', lambda event: entryBox.configure(state='disabled'))
+    entryBox.bind('<KeyRelease-Return>', execCmd)
     #Send Button
     sendButton = tk.Button(root, bd=0, bg='blue', text='Send')
     #Placing Widgets
@@ -59,6 +63,19 @@ def GUI():
     scrollbar.place(x=472, y=13, height=574)
     entryBox.place(x=10, y=595, width=405, height=45)
     sendButton.place(x=420, y=597, width=67, height=41)
+
+def execCmd(command):
+	command = command.split()
+	if command[0] == 'stop':
+		pass
+	elif command[0] == 'kick':
+		pass
+	elif command[0] == 'ban':
+		pass
+	elif command[0] == 'say':
+		pass
+	else:
+		output('Unknown command!')
 
 def broadcast(exception_sock, message, newline=True):
     '''Broadcast a message to every connected nodes except for the server and the one who sent the message'''
@@ -71,9 +88,10 @@ def broadcast(exception_sock, message, newline=True):
                 output('[INFO] Client %s:%s (%s) disconnected'%tuple(list(addr)+[nickname[sock.getpeername()]]))
                 broadcast(sock, '[SERVER] %s left the room'%nickname[addr])
                 sock.close()
-                connections.remove(sock)
+                try: connections.remove(sock)
+                except ValueError: pass
 
-def output(message, pos='end', tag='tag-center'):
+def output(message, tag='tag-center', pos='end'):
     '''Outputs a message to the GUI'''
     message = str(message)
     if message[-1] != '\n': message += '\n'

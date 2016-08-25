@@ -8,11 +8,11 @@
 4 | *MEDIUM* | Server | Pre-1.0<br>Pre-1.1<br>Alpha-1.0<br>Alpha-2.0 | The server port sometimes will not close properly. | **NO**
 5 | *MEDIUM* | Server | Alpha-1.0<br>Alpha-2.0 | Unable to close server. | **NO**
 6 | LOW | Server | Alpha-1.0<br>Alpha-2.0 | The 'Send' button and the entry box has no use. | **NO**
-7 | LOW | Client | Alpha-1.0<br>Alpha-2.0 | The 'Send' button has no use. | **NO**
-8 | **HIGH** | Client | Alpha-1.0<br>Alpha-2.0 | Sending special characters like the emoji, will cause the client to lag. | **NO**
+7 | LOW | Client | Alpha-1.0<br>Alpha-2.0<br>Alpha-2.1 | The 'Send' button has no use. | **NO**
+8 | **HIGH** | Client | Alpha-1.0<br>Alpha-2.0<br>Alpha-2.1 | Sending special characters like the emoji, will cause the client to lag. | **NO**
 9 | *MEDIUM* | Client | Alpha-1.0 | If a nickname includes a space, only the first word will be remained. | **YES**<br>Alpha-2.0
 10 | *LOW* | Client | Alpha-1.0 | Users able to spam. | **YES**<br>Alpha-2.0
-11 | *MEDIUM* | Client | Alpha-1.0<br>Alpha-2.0 | Sending a massive chunk of text causes the server to raise a *Bad file descriptor* error. | **NO**
+11 | *MEDIUM* | Client | Alpha-1.0<br>Alpha-2.0<br>Alpha-2.1 | Sending a massive chunk of text causes the server to raise a *Bad file descriptor* error. | **NO**
 12 | *MEDIUM* | Server | Alpha-1.0<br>Alpha-2.0 | Server sometimes raises a *Bad file descriptor* error when a client closes the window. | **NO**
 13 | **HIGH** | Client | Alpha-2.0 | Cannot find notif.scpt, thus causing massive amount of errors. | **YES**<br>Alpha-2.1
-14 | *MEDIUM* | Client | Alpha-2.0 | In rare situations, user nicknames will include the first message they sent. | **NO**
+14 | *MEDIUM* | Client | Alpha-2.1 | In rare situations, user nicknames will include the first message they sent. | **NO**

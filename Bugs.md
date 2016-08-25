@@ -15,3 +15,4 @@
 11 | *MEDIUM* | Client | Alpha-1.0<br>Alpha-2.0 | Sending a massive chunk of text causes the server to raise a *Bad file descriptor* error. | **NO**
 12 | *MEDIUM* | Server | Alpha-1.0<br>Alpha-2.0 | Server sometimes raises a *Bad file descriptor* error when a client closes the window. | **NO**
 13 | **HIGH** | Client | Alpha-2.0 | Cannot find notif.scpt, thus causing massive amount of errors. | **YES**<br>Alpha-2.1
+14 | *MEDIUM* | Client | Alpha-2.0 | In rare situations, user nicknames will include the first message they sent. | **NO**

@@ -6,7 +6,7 @@ Latest Version: Server: **Alpha 2.0**  Client: **Alpha 2.1**
 
 Python Version: **3.5**
 
-Supported OS: **OSX / macOS**
+Supported OS: **OSX / macOS 10.9+**
 
 ##Features
 * GUI
